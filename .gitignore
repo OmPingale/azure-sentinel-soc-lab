@@ -1,0 +1,25 @@
+# Local system files
+.DS_Store
+Thumbs.db
+
+# Logs and raw exports
+*.log
+*.evtx
+
+# Secrets and credentials
+*.pem
+*.key
+*.pfx
+*.cer
+*.env
+credentials*
+secrets*
+passwords*
+
+# Azure local/config files
+.azure/
+*.rdp
+
+# Temporary files
+tmp/
+temp/
