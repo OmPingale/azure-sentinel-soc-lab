@@ -1,0 +1,5 @@
+SecurityEvent
+| where EventID == 4625
+| where isnotempty(IpAddress) and IpAddress != "-"
+| summarize FailedAttempts = count(), FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated), TargetedAccounts = dcount(Account) by IpAddress
+| order by FailedAttempts desc

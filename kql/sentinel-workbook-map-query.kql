@@ -1,0 +1,8 @@
+let GeoIPDB_FULL = _GetWatchlist("geoip");
+SecurityEvent
+| where EventID == 4625
+| where isnotempty(IpAddress) and IpAddress != "-"
+| summarize FailedAttempts = count() by IpAddress
+| evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network)
+| project IpAddress, FailedAttempts, countryname, cityname, latitude, longitude
+| order by FailedAttempts desc

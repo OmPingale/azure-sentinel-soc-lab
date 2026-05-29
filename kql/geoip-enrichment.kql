@@ -1,0 +1,7 @@
+let GeoIPDB_FULL = _GetWatchlist("geoip");
+SecurityEvent
+| where EventID == 4625
+| where isnotempty(IpAddress) and IpAddress != "-"
+| evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network)
+| project TimeGenerated, Account, Computer, IpAddress, Activity, EventID, countryname, cityname, latitude, longitude
+| order by TimeGenerated desc

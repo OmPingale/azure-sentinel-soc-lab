@@ -1,0 +1,5 @@
+SecurityEvent
+| where EventID == 4625
+| where isnotempty(Account)
+| summarize FailedAttempts = count() by Account
+| order by FailedAttempts desc
